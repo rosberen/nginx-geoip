@@ -51,3 +51,11 @@ geoip2 /etc/nginx/GeoIP/GeoIP2-City.mmdb {
 Rules will be taken into account for GeoIP:
   - Data from the maxmind database: Country, City
   - Whitelist under networks
+
+##### In default.conf we add :
+
+```
+include /etc/nginx/conf.d/geo_block;
+```
+
+- Anyone who does not fall under the geoip rules will be given the 403 http code
