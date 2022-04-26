@@ -1,0 +1,14 @@
+    rewrite ^/(.*)$ /geo_block/$1;
+    if ( $geo_city_perm = yes ) {
+        rewrite ^/geo_block/(.*)$ /$1 last;
+    }
+    if ( $geo_country_perm = yes ) {
+        rewrite ^/geo_block/(.*)$ /$1 last;
+    }  
+    if ( $allow_addresses = yes ) {
+        rewrite ^/geo_block/(.*)$ /$1 last;
+    } 
+
+        location /geo_block/ {
+                return 403;
+        }
